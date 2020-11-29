@@ -24,7 +24,29 @@ namespace BonusSystem.Controllers
         {
             Data = _Data;
         }
-
+        [EnableCors("BonusSystemPolicy")]
+        [Route("get-cards")]
+        [HttpGet]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetCards(QueryParamDTO request)
+        {
+            try
+            {
+                var result = await Data.GetCards(request);
+                if (result.Count() > 0)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [EnableCors("BonusSystemPolicy")]
         [Route("get-card-by-phone-number")]
         [HttpGet]

@@ -40,5 +40,10 @@ namespace BonusSystem.EnterpriseDB.Repocitory.ReadModels
             logger.LogInformation($"Using method GetCardBalanseByCardNumber whis params {query}");
             return await _enterprice.QueryAsync<dynamic>(QueryCollection.GetCardBalanseByCardNumber, new { @param = query.Select(x=>x.BonusCardNumber) }, commandTimeout: TimeOut);
         }
+        public async Task<IEnumerable<QueryParamDTO>> GetCards(QueryParamDTO query)
+        {
+            logger.LogInformation($"Using method GetCards whis params {query}");
+            return await _enterprice.QueryAsync<QueryParamDTO>(QueryCollection.GetCards, new { @UserPhoneNumber = query.UserPhoneNumber, @BonusCardNumber = query.BonusCardNumber }, commandTimeout: TimeOut);
+        }
     }
 }

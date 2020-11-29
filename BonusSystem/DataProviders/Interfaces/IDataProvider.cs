@@ -14,5 +14,6 @@ namespace BonusSystem.DataProviders.Interfaces
         Task MoneyFromBonusCard(QueryParamDTO query);
         Task MoneyToBonusCard(QueryParamDTO query);
         Task CreateBonusCard();
+        Task<IEnumerable<QueryParamDTO>> GetCards(QueryParamDTO query);
     }
 }

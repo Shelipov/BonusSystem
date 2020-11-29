@@ -11,5 +11,6 @@ namespace BonusSystem.EnterpriseDB.Interfaces
         Task<IEnumerable<dynamic>> GetCardByNumberPhone(IEnumerable<QueryParamDTO> query);
         Task<IEnumerable<dynamic>> GetCardBalanseByUser(IEnumerable<QueryParamDTO> query);
         Task<IEnumerable<dynamic>> GetCardBalanseByCardNumber(IEnumerable<QueryParamDTO> query);
+        Task<IEnumerable<QueryParamDTO>> GetCards(QueryParamDTO query);
     }
 }

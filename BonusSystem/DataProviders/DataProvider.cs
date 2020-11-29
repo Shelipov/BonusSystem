@@ -37,6 +37,21 @@ namespace BonusSystem.DataProviders
             mail = _mail;
             Configuration = new Configuration.Configuration();
         }
+        public async Task<IEnumerable<QueryParamDTO>> GetCards(QueryParamDTO query)
+        {
+            try
+            {
+                return await read.GetCards(query);
+            }
+            catch (Exception ex)
+            {
+                await elastic.Execute(ex);
+                var stack = (new StackTrace(ex, true)).GetFrame(0);
+                logger.LogError($"\n\n\n Exeption in File : {stack.GetFileName()} ; \n\n\n Line : {stack.GetFileLineNumber()} ; \n\n\n Message : {ex.Message} \n\n\n");
+                await mail.SendEmailAsync(new EmailService.Models.EmailParams() { Title = $"Exeption in File : {stack.GetFileName()}", UserList = new List<UserDTO>() { new UserDTO() { UserID = query.UserID, UserEmail = Configuration.SmtpClientAdminEmail, UserFullName = Configuration.SmtpClientAdminEmail, UserName = Configuration.SmtpClientAdminEmail } } });
+                throw new Exception($"Не удалось обработать запрос обратитесь за помощью в службу поддержки");
+            }
+        }
         public async Task<IEnumerable<dynamic>> GetCardByNumberPhone(IEnumerable<QueryParamDTO> query)
         {
             try
