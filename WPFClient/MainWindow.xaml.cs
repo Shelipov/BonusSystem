@@ -40,7 +40,6 @@ namespace WPFClient
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Set();
-            //MessageBox.Show("Отправленно в обработку");
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -174,6 +173,23 @@ namespace WPFClient
             catch (Exception ex)
             {
                 MessageBox.Show("Не валидное число");
+            }
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var paramOperations = new SendParams(String.Concat(UrlHelper.Domain, UrlHelper.CreateBonusCard),
+                     "", "POST");
+                var sendOperations = new Helpers.RestClient(paramOperations);
+                await sendOperations.Post();
+                var ResponseOperations = (string)JsonConvert.DeserializeObject(sendOperations.Response, typeof(string));
+                MessageBox.Show(ResponseOperations);
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось обработать запрос обратитесь за помощью в службу поддержки");
             }
         }
     }

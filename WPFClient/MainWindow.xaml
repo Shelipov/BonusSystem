@@ -25,6 +25,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="420,39,0,0" TextWrapping="Wrap" Foreground="Gray" Text="Пополнить" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="555,39,0,0" TextWrapping="Wrap" Foreground="Gray" Text="Снять" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_2"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="25,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390" Height="23"/>
+        <Button Content="Создать бонусную карту" HorizontalAlignment="Left" Margin="534,207,0,0" VerticalAlignment="Top" Width="232" RenderTransformOrigin="1.329,-1.317" Click="Button_Click_2"/>
 
     </Grid>
 </Window>
