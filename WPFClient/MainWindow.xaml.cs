@@ -39,14 +39,19 @@ namespace WPFClient
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Hello");
+            Set();
+            //MessageBox.Show("Отправленно в обработку");
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                ChangeCard = e.AddedItems[0] as ViewModel;
+                if (e.AddedItems.Count > 0)
+                {
+                    ChangeCard = e.AddedItems[0] as ViewModel;
+                    textBlock.Text = $"Карта:{ChangeCard.BonusCardNumber}; Баланс:{ChangeCard.BonusCardBalanse}";
+                }
             }
             catch (Exception ex)
             {
@@ -67,35 +72,109 @@ namespace WPFClient
             }
         }
 
-        public async Task Get(string sender)
+       async Task Get(string sender)
        {
             try
             {
-               
                 string operationsjson = JsonConvert.SerializeObject(new QueryParamDTO() { BonusCardNumber = $"{sender}",UserPhoneNumber=$"{sender}"});
                 var paramOperations = new SendParams(String.Concat(UrlHelper.Domain, UrlHelper.GetCards),
                     operationsjson, "POST");
-               
 
                 var sendOperations = new Helpers.RestClient(paramOperations);
 
-
                 await sendOperations.Post();
-
 
                 var ResponseOperations = (ObservableCollection<ViewModel>)JsonConvert.DeserializeObject(sendOperations.Response, typeof(ObservableCollection<ViewModel>));
                 this.new_ViewModel.ItemsSource = ResponseOperations;
-
+                Summ.State = sender;
             }
             catch(Exception ex)
             {
                 MessageBox.Show( ex.Message);
             }
         }
+        async Task Set()
+        {
+            try
+            {
+                if (ChangeCard.BonusCardID != 0)
+                {
+                    if (ChangeCard.RemuveSumm > 0)
+                    {
+                        string operationsjson = JsonConvert.SerializeObject(new QueryParamDTO() { BonusCardNumber = $"{ChangeCard.BonusCardNumber}", UserPhoneNumber = $"{ChangeCard.UserPhoneNumber}", MoneyFromBonusCard = ChangeCard.RemuveSumm });
+                        var paramOperations = new SendParams(String.Concat(UrlHelper.Domain, UrlHelper.MoneyFromBonusCard),
+                            operationsjson, "POST");
+                        var sendOperations = new Helpers.RestClient(paramOperations);
+                        await sendOperations.Post();
+                        var ResponseOperations = (string)JsonConvert.DeserializeObject(sendOperations.Response, typeof(string));
+                        textBlock.Text = $"Карта:{ChangeCard.BonusCardNumber}; Баланс:{ChangeCard.BonusCardBalanse -= (decimal)ChangeCard.RemuveSumm}";
+                        ///MessageBox.Show(ResponseOperations);
+                    }
+                    if (ChangeCard.AddSumm > 0)
+                    {
+                        string operationsjson = JsonConvert.SerializeObject(new QueryParamDTO() { BonusCardNumber = $"{ChangeCard.BonusCardNumber}", UserPhoneNumber = $"{ChangeCard.UserPhoneNumber}", MoneyFromBonusCard = ChangeCard.AddSumm });
+                        var paramOperations = new SendParams(String.Concat(UrlHelper.Domain, UrlHelper.MoneyToBonusCard),
+                            operationsjson, "POST");
+                        var sendOperations = new Helpers.RestClient(paramOperations);
+                        await sendOperations.Post();
+                        var ResponseOperations = (string)JsonConvert.DeserializeObject(sendOperations.Response, typeof(string));
+                        textBlock.Text = $"Карта:{ChangeCard.BonusCardNumber}; Баланс:{ChangeCard.BonusCardBalanse += (decimal)ChangeCard.AddSumm}";
+                        //MessageBox.Show(ResponseOperations);
+                    }
+                    await Get(Summ.State);
+                }
+                else
+                {
+                    MessageBox.Show("Карта не выбрана");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось обработать запрос обратитесь за помощью в службу поддержки");
+            }
+        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (!(sender as TextBox).Text.Contains("П"))
+                {
+                    Summ.AddSumm =decimal.Parse((sender as TextBox).Text);
+                    if(ChangeCard.BonusCardID != 0)
+                    {
+                        ChangeCard.AddSumm = Summ.AddSumm>=0? Summ.AddSumm: Summ.AddSumm*-1;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Не валидное число");
+            }
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (!(sender as TextBox).Text.Contains("С"))
+                {
+                    Summ.RemuveSumm = decimal.Parse((sender as TextBox).Text);
+                    if (ChangeCard.BonusCardID != 0)
+                    {
+                        ChangeCard.RemuveSumm = Summ.RemuveSumm>=0? Summ.RemuveSumm: Summ.RemuveSumm*-1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Не валидное число");
+            }
         }
     }
 }

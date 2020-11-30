@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Выполнить" HorizontalAlignment="Left" Height="19" Margin="510,39,0,0" VerticalAlignment="Top" Width="67" Click="Button_Click"/>
+        <Button Content="Выполнить" HorizontalAlignment="Left" Height="23" Margin="691,39,0,0" VerticalAlignment="Top" Width="67" Click="Button_Click"/>
         <StackPanel DataContext="{Binding ElementName=mainWindow, Path=new_ViewModel}">
             <ListView x:Name="new_ViewModel"  HorizontalAlignment="Left" Height="111" Margin="23,68,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="ListView_SelectionChanged">
                 <ListView.View>
@@ -22,8 +22,9 @@
             </ListView>
         </StackPanel>
         <TextBox HorizontalAlignment="Left" Height="20" Margin="69,3,0,0" TextWrapping="Wrap"  Text="Поиск"  Foreground="Gray" VerticalAlignment="Top" Width="320" MaxLength="250" TextChanged="TextBox_TextChanged"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="69,38,0,0" TextWrapping="Wrap"  Text=""  Foreground="Black" VerticalAlignment="Top" Width="232" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.497,2.4"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="403,38,0,0" TextWrapping="Wrap"  Text="Пополнить"  Foreground="Gray" VerticalAlignment="Top" Width="77" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.497,2.4"/>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="313,38,0,0" TextWrapping="Wrap"  Text="Снять"  Foreground="Gray" VerticalAlignment="Top" Width="77" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="0.497,2.4"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="420,39,0,0" TextWrapping="Wrap" Foreground="Gray" Text="Пополнить" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="555,39,0,0" TextWrapping="Wrap" Foreground="Gray" Text="Снять" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_2"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="25,39,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="390" Height="23"/>
+
     </Grid>
 </Window>

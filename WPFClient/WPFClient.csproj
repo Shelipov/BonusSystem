@@ -73,6 +73,7 @@
     <Compile Include="Helpers\QueryParamDTO.cs" />
     <Compile Include="Helpers\RestClient.cs" />
     <Compile Include="Helpers\SendParams.cs" />
+    <Compile Include="Helpers\Summ.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

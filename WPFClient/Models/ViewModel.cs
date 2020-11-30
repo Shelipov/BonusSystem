@@ -18,7 +18,9 @@ namespace WPFClient.Models
         string _UserEmail;
         string _UserFullName;
         string _UserName;
-        public string _UserPhoneNumber;
+        string _UserPhoneNumber;
+        public decimal? AddSumm { get; set; }
+        public decimal? RemuveSumm { get; set; }
 
         public int UserID
         {
@@ -58,10 +60,10 @@ namespace WPFClient.Models
         }
         public string UserPhoneNumber
         {
-            get { return _UserName; }
+            get { return _UserPhoneNumber; }
             set
             {
-                _UserName = value;
+                _UserPhoneNumber = value;
                 OnPropertyChanged("UserPhoneNumber");
             }
         }

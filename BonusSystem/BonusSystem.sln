@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailService", "..\EmailSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BonusSystem", "BonusSystem.csproj", "{57A09CC0-C9D2-4EF3-A1B7-1D53716375F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BonusSystemClient", "..\BonusSystemClient\BonusSystemClient.csproj", "{A93F49EB-3159-4B02-8BF0-2C146FD4E8B9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "..\WPFClient\WPFClient.csproj", "{72E784A0-12B3-46B1-8754-6AEF0A3AC921}"
 EndProject
 Global
@@ -53,10 +51,6 @@ Global
 		{57A09CC0-C9D2-4EF3-A1B7-1D53716375F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A09CC0-C9D2-4EF3-A1B7-1D53716375F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A09CC0-C9D2-4EF3-A1B7-1D53716375F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A93F49EB-3159-4B02-8BF0-2C146FD4E8B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A93F49EB-3159-4B02-8BF0-2C146FD4E8B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A93F49EB-3159-4B02-8BF0-2C146FD4E8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A93F49EB-3159-4B02-8BF0-2C146FD4E8B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72E784A0-12B3-46B1-8754-6AEF0A3AC921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{72E784A0-12B3-46B1-8754-6AEF0A3AC921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72E784A0-12B3-46B1-8754-6AEF0A3AC921}.Release|Any CPU.ActiveCfg = Release|Any CPU
