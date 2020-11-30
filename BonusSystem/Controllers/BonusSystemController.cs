@@ -26,7 +26,7 @@ namespace BonusSystem.Controllers
         }
         [EnableCors("BonusSystemPolicy")]
         [Route("get-cards")]
-        [HttpGet]
+        [HttpPost]
         [Produces("application/json")]
         public async Task<IActionResult> GetCards(QueryParamDTO request)
         {
